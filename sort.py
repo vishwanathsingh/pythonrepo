@@ -14,21 +14,21 @@ def sort(arr):
 	for i in range (0,len(arr_B)):
 		arr_B[i]=arr[length/2 + i]
 
-	print "array A is",arr_A
-	print "array B is",arr_B	
+	#print "array A is",arr_A
+	#print "array B is",arr_B	
 	sort(arr_A)
 	sort(arr_B)
 	
 	#print "sorted array A is",sorted_A
 	#print "sorted array B is",sorted_B
 	merge(arr_A,arr_B,arr)
-	print arr
+	#print arr
 
 def merge(A,B,C):
 	i=a=b=0;
-	print "received array A is",A
-	print "received array B is",B
-	print "received array C is",C
+	#print "received array A is",A
+	#print "received array B is",B
+	#print "received array C is",C
 	while (a<len(A) and b<len(B)):
 		if( A[a] < B[b]):
 			C[i]=A[a]
@@ -50,3 +50,51 @@ def merge(A,B,C):
 			C[i]=A[k]
 			i+=1
 			k+=1
+			
+	return
+	
+def count_pairs(arr,k):
+	count=0
+	sort(arr)
+	#print "sorted array is",arr
+	
+	for i in xrange(0,len(arr)):
+		lowerBound=i
+		if((i+k)>=len(arr)):
+			upperBound=len(arr)-1
+		else:
+			upperBound=i+k 
+		mid=int(math.ceil((float(lowerBound + upperBound))/2))
+		targetMatch=arr[i]+k
+		#print "targetMatch",targetMatch
+		
+		if(arr[upperBound] == targetMatch):
+			count+=1
+			#print "count is ",count
+		
+		else:
+		
+			while(upperBound>=lowerBound):
+				#print "mid arr is ",arr[mid]
+				if(arr[mid] == targetMatch):
+					count+=1;
+					#print "count is ",count  
+					break
+				if(arr[mid] > targetMatch):
+					lowerBound=mid+1
+				else:
+					upperBound=mid-1
+			
+				mid=int(math.ceil((float(lowerBound + upperBound))/2))
+				
+		
+			
+	  
+				
+				
+				
+				
+				
+			
+			
+	
